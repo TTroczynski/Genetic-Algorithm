@@ -2,11 +2,10 @@
 #include <sstream>
 #include "Utility.h"
 
-Solution::Solution(int numberOfBits, int low, int high, double crossoverProbability) : 
+Solution::Solution(int numberOfBits, int low, int high) : 
 	mNumberOfBits{ numberOfBits }, 
 	mLow{ low }, 
-	mHigh{ high }, 
-	mCrossoverProbability{ crossoverProbability } {
+	mHigh{ high } {
 
 	//reserves 8 indices to avoid reallocating when we exceed 1 elements because a vectors 
 	//size is initially 1 element wide.
@@ -15,6 +14,15 @@ Solution::Solution(int numberOfBits, int low, int high, double crossoverProbabil
 	for (int i = 0; i < numberOfBits; i++) {
 		bits.push_back(rand() % 2); // values 0 - 1 are randomely generated
 	}
+}
+
+Solution::Solution(int numberOfBits, int low, int high, std::vector<int> inBits) :
+	mNumberOfBits{ numberOfBits },
+	mLow{ low },
+	mHigh{ high },
+	bits{inBits}
+{
+
 }
 
 std::string Solution::toString() {
@@ -52,25 +60,27 @@ double Solution::bitsToDouble(){
 
 std::vector<Solution> Solution::singlePointCrossover(Solution other, double crossoverProbability) {
 
-	
-
 	bool cross = randomProbability(crossoverProbability);
 
 	if (cross) {
 
 		int crossPoint = rand() % mNumberOfBits;
 
-		std::vector<Solution> children;
-
 		std::vector<int> bits1;
 		std::vector<int> bits2;
 
-		std::copy(this->mNumberOfBits.begin(), this->mNumberOfBits.begin() + crossPoint, std::back_inserter(bits1));
-		std::copy(other.bits.begin() + crossPoint, std::back_inserter(bits1));
+		std::copy(this->bits.begin(), this->bits.begin() + crossPoint, std::back_inserter(bits1));
+		std::copy(other.bits.begin() + crossPoint, other.bits.end(), std::back_inserter(bits1));
+
+		std::copy(this->bits.begin(), this->bits.begin() + crossPoint, std::back_inserter(bits2));
+		std::copy(other.bits.begin() + crossPoint, this->bits.end(), std::back_inserter(bits2));
+
+		Solution child1{ mNumberOfBits, mLow, mHigh, bits1 };
+		Solution child2{ mNumberOfBits, mLow, mHigh, bits2 };
+		
 
 
-
-		children;
+		return { child1, child2 };
 	}
 	else {
 		return { *this, other };

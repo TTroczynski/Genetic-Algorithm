@@ -12,12 +12,12 @@ GeneticAlgorithm::GeneticAlgorithm(int populationSize, int generations, int tour
 
 Solution GeneticAlgorithm::run(int numberOfBits, int low, int high)
 {
-	Solution best(numberOfBits, low, high, mCrossoverProbability);
+	Solution best(numberOfBits, low, high);
 
 	std::vector<Solution> currentGeneration;
 
 	for (int i = 0; i < mPopulationSize; i++) {
-		currentGeneration.push_back(Solution(numberOfBits, low, high, mCrossoverProbability));
+		currentGeneration.push_back(Solution(numberOfBits, low, high));
 	}
 
 	std::cout << "First generation:" << std::endl;
@@ -27,7 +27,13 @@ Solution GeneticAlgorithm::run(int numberOfBits, int low, int high)
 
 	for (int i = 0; i < mGenerations; i++) {
 
-		std::vector<Solution> crossedSolutions = tournamentCrossover();
+		std::vector<Solution> crossedSolutions = tournamentCrossover(currentGeneration);
+
+		std::cout << "Crossed solutions:" << std::endl;
+
+		for (Solution s : crossedSolutions) {
+			std::cout << s.toString();
+		}
 	}
 
 
@@ -69,8 +75,12 @@ std::vector<Solution> GeneticAlgorithm::tournamentCrossover(std::vector<Solution
 		Solution winner2 = tournamentWinner(currentGeneration);
 
 		//perform crossover
-		std::vector<Solution> children = singlePointCrossover(winner1, winner2);
+		std::vector<Solution> children = winner1.singlePointCrossover(winner2, mCrossoverProbability);
+		newSolution.push_back(children[0]);
+		newSolution.push_back(children[1]);
 		
 	}
+	return newSolution;
 }
+
 

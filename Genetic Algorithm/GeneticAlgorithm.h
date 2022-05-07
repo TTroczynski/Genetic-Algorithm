@@ -13,5 +13,6 @@ public:
 	Solution run(int numberOfBits, int low, int high);
 	std::vector<Solution> tournamentCrossover(std::vector<Solution>& currentGeneration);
 	Solution tournamentWinner(std::vector<Solution>& currentGeneration);
+
 	
 };
