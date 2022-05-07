@@ -22,7 +22,15 @@ std::string Solution::toString() {
 		stream << bits.at(i) << " ";
 	}
 
-	stream << "] double = "<< bitsToDouble() << std::endl;
+	stream << "] double = "<< bitsToDouble() << " fitness " << fitness() << std::endl;
+
+	return stream.str();
+}
+
+double Solution::fitness()
+{
+	double floatValue = bitsToDouble();
+	return floatValue + 2 * sin(floatValue);
 }
 
 //converts to floating point value

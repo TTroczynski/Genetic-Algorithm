@@ -17,5 +17,7 @@ public:
 
 	Solution(int numberOfBits, int low, int high);
 	std::string toString();
+	double fitness();
+
 };
 

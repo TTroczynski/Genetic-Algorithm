@@ -160,10 +160,22 @@
 //3. crossover function
 //4. mutation function
 
+#include "GeneticAlgorithm.h"
+#include <time.h>
+
 
 
 int main(void) {
+	srand(time(NULL));
 
+	int mPopulationSize = 200;
+	int mGenerations = 20;
+	int mBits = 8;
+	int low = 0;
+	int high = 4;
+	
+	GeneticAlgorithm ga(mPopulationSize, mGenerations);
+	Solution bestSolution = ga.run(mBits, low, high);
 
 
 	return 0;
