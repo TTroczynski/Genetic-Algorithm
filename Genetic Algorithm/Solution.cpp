@@ -2,7 +2,11 @@
 #include <sstream>
 #include "Utility.h"
 
-Solution::Solution(int numberOfBits, int low, int high) : mNumberOfBits{ numberOfBits }, mLow{ low }, mHigh{ high } {
+Solution::Solution(int numberOfBits, int low, int high, double crossoverProbability) : 
+	mNumberOfBits{ numberOfBits }, 
+	mLow{ low }, 
+	mHigh{ high }, 
+	mCrossoverProbability{ crossoverProbability } {
 
 	//reserves 8 indices to avoid reallocating when we exceed 1 elements because a vectors 
 	//size is initially 1 element wide.
@@ -43,5 +47,34 @@ double Solution::bitsToDouble(){
 		dec = dec + pow(2, i) * bits[i];
 	}
 	return dec * mPrecision + mLow;
+
+}
+
+std::vector<Solution> Solution::singlePointCrossover(Solution other, double crossoverProbability) {
+
+	
+
+	bool cross = randomProbability(crossoverProbability);
+
+	if (cross) {
+
+		int crossPoint = rand() % mNumberOfBits;
+
+		std::vector<Solution> children;
+
+		std::vector<int> bits1;
+		std::vector<int> bits2;
+
+		std::copy(this->mNumberOfBits.begin(), this->mNumberOfBits.begin() + crossPoint, std::back_inserter(bits1));
+		std::copy(other.bits.begin() + crossPoint, std::back_inserter(bits1));
+
+
+
+		children;
+	}
+	else {
+		return { *this, other };
+	}
+
 
 }

@@ -15,9 +15,10 @@ class Solution
 
 public:
 
-	Solution(int numberOfBits, int low, int high);
+	Solution(int numberOfBits, int low, int high, double crossoverProbability);
 	std::string toString();
 	double fitness();
+	std::vector<Solution> singlePointCrossover(Solution s1, double crossoverProbability);
 
 };
 

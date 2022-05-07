@@ -168,13 +168,15 @@
 int main(void) {
 	srand(time(NULL));
 
-	int mPopulationSize = 200;
+	int mPopulationSize = 100;
 	int mGenerations = 20;
 	int mBits = 8;
 	int low = 0;
 	int high = 4;
+	int tournamentGroupSize = 3;
+	double crossoverProbability = 0.7;
 	
-	GeneticAlgorithm ga(mPopulationSize, mGenerations);
+	GeneticAlgorithm ga(mPopulationSize, mGenerations, tournamentGroupSize, crossoverProbability);
 	Solution bestSolution = ga.run(mBits, low, high);
 
 
