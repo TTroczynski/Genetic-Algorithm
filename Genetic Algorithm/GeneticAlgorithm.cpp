@@ -75,10 +75,14 @@ std::vector<Solution> GeneticAlgorithm::tournamentCrossover(std::vector<Solution
 		Solution winner1 = tournamentWinner(currentGeneration);
 		Solution winner2 = tournamentWinner(currentGeneration);
 
+		std::cout << "Crossing the winners: " << winner1.toString() << " & " << winner2.toString();
+
 		//perform crossover
 		std::vector<Solution> children = winner1.singlePointCrossover(winner2, mCrossoverProbability);
 		newSolution.push_back(children[0]);
 		newSolution.push_back(children[1]);
+
+		std::cout << "Children = " << winner1.toString() << " & " << winner2.toString() << std::endl;
 		
 	}
 	return newSolution;

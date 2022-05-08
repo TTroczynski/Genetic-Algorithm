@@ -1,6 +1,7 @@
 #include "Solution.h"
 #include <sstream>
 #include "Utility.h"
+#include <iostream>
 
 Solution::Solution(int numberOfBits, int low, int high) : 
 	mNumberOfBits{ numberOfBits }, 
@@ -61,6 +62,8 @@ double Solution::bitsToDouble(){
 std::vector<Solution> Solution::singlePointCrossover(Solution other, double crossoverProbability) {
 
 	bool cross = randomProbability(crossoverProbability);
+
+	std::cout << " Cross ? " << cross << std::endl;
 
 	if (cross) {
 

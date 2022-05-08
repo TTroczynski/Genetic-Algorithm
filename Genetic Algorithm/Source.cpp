@@ -168,11 +168,11 @@
 int main(void) {
 	srand(time(NULL));
 
-	int mPopulationSize = 1500;
-	int mGenerations = 150;
+	int mPopulationSize = 100;
+	int mGenerations = 20;
 	int mBits = 8;
 	int low = 0;
-	int high = 10;
+	int high = 4;
 	int tournamentGroupSize = 3;
 	double crossoverProbability = 0.7;
 	
