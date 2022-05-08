@@ -73,7 +73,7 @@ std::vector<Solution> Solution::singlePointCrossover(Solution other, double cros
 		std::copy(other.bits.begin() + crossPoint, other.bits.end(), std::back_inserter(bits1));
 
 		std::copy(this->bits.begin(), this->bits.begin() + crossPoint, std::back_inserter(bits2));
-		std::copy(other.bits.begin() + crossPoint, this->bits.end(), std::back_inserter(bits2));
+		std::copy(other.bits.begin() + crossPoint, other.bits.end(), std::back_inserter(bits2));
 
 		Solution child1{ mNumberOfBits, mLow, mHigh, bits1 };
 		Solution child2{ mNumberOfBits, mLow, mHigh, bits2 };

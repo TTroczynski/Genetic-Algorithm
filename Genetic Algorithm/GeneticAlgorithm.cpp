@@ -6,7 +6,8 @@
 GeneticAlgorithm::GeneticAlgorithm(int populationSize, int generations, int tournamentGroupSize, double crossoverProbability)
 	: mPopulationSize{ populationSize }, 
 	mGenerations{ generations }, 
-	mTournamentGroupSize{tournamentGroupSize}
+	mTournamentGroupSize{tournamentGroupSize},
+	mCrossoverProbability{crossoverProbability}
 {
 }
 

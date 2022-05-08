@@ -5,7 +5,7 @@ class GeneticAlgorithm {
 	int mPopulationSize;
 	int mGenerations;
 	int mTournamentGroupSize;
-	int mCrossoverProbability;
+	double mCrossoverProbability;
 
 public:
 
